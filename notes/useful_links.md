@@ -6,6 +6,7 @@ Ackerman Steering
 
 Robots we can use as reference:
 - [RBCAR](http://wiki.ros.org/Robots/RBCAR)
+- http://moorerobots.com/blog/post/1
 
 MVSIM:
  - This is a vehicle dynamics simulator, it has a c++ library and ros node. Could be useful
