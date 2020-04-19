@@ -22,7 +22,12 @@ add_message_files(
   Trajectory.msg
   )
 
-
+## Generate added messages and services with any dependencies listed here
+generate_messages(
+  DEPENDENCIES
+  std_msgs
+  geometry_msgs
+  )
 ###########
 ## Build ##
 ###########
@@ -31,6 +36,7 @@ include_directories(
   include
   ${catkin_INCLUDE_DIRS}
   ../../libs/basic/include/
+  ../simple_car_model/include/
 )
 
 add_executable( ${PROJECT_NAME}_node

@@ -52,14 +52,15 @@ public:
 
 	vehicle_angle += vehicle_angle_vel;
 	pos.x += vel.x;
-    if (pos.x > 400) {
+    	if (pos.x > 400) {
         pos.x = 400;
-    }
+    	}
+    	
 	pos.y += vel.y;
-    if (pos.y > 400) {
+    	if (pos.y > 400) {
         pos.y = 400;
-    }
-    }
+    	}
+    	}
 
 };
 

@@ -14,6 +14,7 @@
 #define WINDOW_HEIGHT 720 //400 //720 changed for testing purposes
 
 
+
 BaseVehicle vehicle;
 simple_car_model::Waypoint wpt_tracking_goal;
 BaseVehicle wpt_tracking_goal_state;
@@ -36,7 +37,8 @@ public:
 
     bool vehicle_set;
     float window_width_m;
-
+    float vehicle_width = 1.7;
+    float vehicle_length = 4.0;
     World(){
 	vehicle_set = false;
 	window_width_m = 100;// adjust to 100 for 1080x720 screen
@@ -58,19 +60,19 @@ public:
 			 BaseVehicle* input_vehicle,
 			 int alpha = 255 ){
 
-	    std::cout << input_vehicle->length << "\n";
+	   // std::cout << input_vehicle->length << "\n";
 
 	float ZOOM_FACTOR = (float)WINDOW_WIDTH / window_width_m;
 
 	// chassis
-	render_v_chassis = sf::RectangleShape( sf::Vector2f(input_vehicle->length * ZOOM_FACTOR,
-							    input_vehicle->width * ZOOM_FACTOR) );
+	render_v_chassis = sf::RectangleShape( sf::Vector2f(vehicle_length* ZOOM_FACTOR,
+							    vehicle_width * ZOOM_FACTOR) );
 
 	render_v_chassis.move( input_vehicle->pos.x * ZOOM_FACTOR,
 			       input_vehicle->pos.y * ZOOM_FACTOR );
 
 	render_v_chassis.setFillColor( sf::Color(0, 0, 0, 0) );
-	render_v_chassis.setOutlineColor( sf::Color(0, 0, 0, alpha) );
+	render_v_chassis.setOutlineColor( sf::Color(0, 0, 0, alpha) );//std::coutstd::cout
 	render_v_chassis.setOutlineThickness(1.0);
 
 
@@ -88,8 +90,8 @@ public:
 	//veh_rotation.rotate(0, veh_center);
 
 	// wheels
-	float wheel_width = input_vehicle->width * 0.2;
-	float wheel_length = input_vehicle->length * 0.3;
+	float wheel_width = vehicle_width * 0.2;
+	float wheel_length = vehicle_length * 0.3;
 
 	//  set all the wheel widths
 	render_v_wheel_bl = sf::RectangleShape( sf::Vector2f(wheel_length * ZOOM_FACTOR,
@@ -108,16 +110,16 @@ public:
         render_v_wheel_fr.setFillColor( sf::Color(0, 0, 255, alpha) );
 
         render_v_wheel_bl.move( (input_vehicle->pos.x) * ZOOM_FACTOR,
-				(input_vehicle->pos.y + input_vehicle->width - wheel_width) * ZOOM_FACTOR );
+				(input_vehicle->pos.y + vehicle_width - wheel_width) * ZOOM_FACTOR );
 
         render_v_wheel_br.move( (input_vehicle->pos.x) * ZOOM_FACTOR,
 				(input_vehicle->pos.y) * ZOOM_FACTOR );
 
-        render_v_wheel_fl.move( (input_vehicle->pos.x + input_vehicle->length - wheel_length) * ZOOM_FACTOR,
-				(input_vehicle->pos.y + input_vehicle->width - wheel_width) * ZOOM_FACTOR );
+        render_v_wheel_fl.move( (input_vehicle->pos.x + vehicle_length - wheel_length) * ZOOM_FACTOR,
+				(input_vehicle->pos.y + vehicle_width - wheel_width) * ZOOM_FACTOR );
 
-        render_v_wheel_fr.move( (input_vehicle->pos.x + input_vehicle->length - wheel_length) * ZOOM_FACTOR,
-				(input_vehicle->pos.y) * ZOOM_FACTOR );
+        render_v_wheel_fr.move( (input_vehicle->pos.x + vehicle_length - wheel_length) * ZOOM_FACTOR,
+				(input_vehicle->pos.y) * ZOOM_FACTOR );//std::coutstd::cout
 
 
 	sf::Vector2f center_wheel_l = sf::Vector2f( render_v_wheel_fl.getPosition().x + render_v_wheel_fl.getSize().x/2,

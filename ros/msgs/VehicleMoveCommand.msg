@@ -1,3 +1,5 @@
 Header header
 float32 linear_vel
 float32 steering_angle_vel
+float32 linear_vel_error
+float32 steering_angle_vel_error
